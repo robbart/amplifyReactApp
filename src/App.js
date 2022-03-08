@@ -1,14 +1,22 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+    <Authenticator>
+      {({ signOut, user }) => (
+        <div className="App">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Hey {user.username}, welcome to my channel, with auth!
+          </p>
+          <button onClick={signOut}>Sign out</button>
+        </div>
+      )}
+      <p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -17,8 +25,8 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-    </div>
+      </p>
+    </Authenticator>    
   );
 }
 
